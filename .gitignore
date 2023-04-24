@@ -1,4 +1,24 @@
 /ads-backend/node_modules/
 /ads-backend/.env
 
-/search-ads/node_modules
+/ads-frontend/node_modules
+
+/ads-frontend/.pnp
+.pnp.js
+
+# testing
+/ads-frontend/coverage
+
+# production
+/ads-frontend/build
+
+# misc
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
