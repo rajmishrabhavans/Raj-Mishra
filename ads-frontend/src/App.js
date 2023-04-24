@@ -6,10 +6,12 @@ import 'fontawesome-free/css/all.min.css';
 function App() {
   const [ads, setAds] = useState([]);
   const [inputData, setInputData] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const loadAds = async (key = "") => {
 
     try {
+      setLoading(true);
       const res = await fetch('http://localhost:8000/fetchAds', {
         method: "POST",
         headers: {
@@ -29,6 +31,8 @@ function App() {
 
     } catch (error) {
       console.log(error);
+    } finally{
+      setLoading(false);
     }
   }
   useEffect(() => {
@@ -48,7 +52,8 @@ function App() {
       </div>
 
       <AdCard adData={ads} />
-      {ads.length===0?<><h1> Sorry no match found<i class="fa fa-exclamation"></i></h1><img src={noresult} style={{width:'100vw',maxWidth:'600px'}} alt='noresult'></img></>:null}
+      {ads.length===0 && !loading?<><h1> Sorry no match found<i class="fa fa-exclamation"></i></h1><img src={noresult} 
+      style={{width:'100vw',maxWidth:'600px'}} alt='noresult'></img></>:loading?<h1>Loading data...</h1>:null}
     </div>
   );
 }
