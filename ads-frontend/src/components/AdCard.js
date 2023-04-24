@@ -1,13 +1,12 @@
 import React from 'react'
 
 const AdCard = ({ adData }) => {
-    // console.log(adData);
 
+    //converts the driver unsupported path for img source to supported path
     const urlToImg = (url) => {
         if (!url) return url;
         if(url.includes("drive.google.com")){
             const found = url.match(/d\/([A-Za-z0-9_-]+)/);
-            //   console.log(found);
             if (found && found[1].length) {
                 const new_url = 'https://drive.google.com/uc?export=view&id=' + found[1];
                 return new_url;
@@ -17,6 +16,7 @@ const AdCard = ({ adData }) => {
     }
 
     return (
+        // card used to display advertisements
         <section className="row">
             {adData.map((currElem, index) => {
                 const { companyInfo, primaryText, headline, description, CTA, imageUrl } = currElem;

@@ -8,6 +8,8 @@ function App() {
   const [inputData, setInputData] = useState('');
   const [loading, setLoading] = useState(false);
 
+  // loads the data from the database through backend and also use keyword for getting
+  // matched data
   const loadAds = async (key = "") => {
 
     try {
@@ -39,6 +41,7 @@ function App() {
     loadAds();
   }, [])
   return (
+    //search bar
     <div className='container my-4'>
     <h1><span className='text-primary'>Ad</span>-<span className='text-success'>Search</span></h1>
       <div className="p-1 bg-light rounded rounded-pill shadow-sm mb-4">
@@ -51,6 +54,7 @@ function App() {
         </div>
       </div>
 
+      {/* Displays cards based on useState */}
       <AdCard adData={ads} />
       {ads.length===0 && !loading?<><h1> Sorry no match found<i class="fa fa-exclamation"></i></h1><img src={noresult} 
       style={{width:'100vw',maxWidth:'600px'}} alt='noresult'></img></>:loading?<h1>Loading data...</h1>:null}
